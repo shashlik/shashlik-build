@@ -4,9 +4,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/board/generic_x86/device.mk)
 
 include $(SRC_TARGET_DIR)/product/emulator.mk
 
-# ifdef NET_ETH0_STARTONBOOT
   PRODUCT_PROPERTY_OVERRIDES += net.eth0.startonboot=1
-# endif
+  PRODUCT_PROPERTY_OVERRIDES := \
+    keyguard.no_require_sim=true \
+    ro.com.android.dataroaming=true
 
 # Put en_US first in the list, so make it default.
 PRODUCT_LOCALES := en_US
@@ -18,7 +19,8 @@ PRODUCT_AAPT_CONFIG := normal
 PRODUCT_PACKAGES += \
 	bios.bin \
 	vgabios-cirrus.bin \
-	Shashlikd
+	Dialer \
+	rild
 
 # Overrides
 PRODUCT_NAME := shashlik_x86
